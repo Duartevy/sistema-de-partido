@@ -39,12 +39,16 @@
 
         <div class="mb-3">
             <label for="estado" class="form-label">Estado</label>
-            <input type="text" name="estado" id="estado" class="form-control" required>
+            <select name="estado" id="estado" class="form-select" required>
+                <option value="">Selecione o estado</option>
+            </select>
         </div>
 
         <div class="mb-3">
             <label for="cidade" class="form-label">Cidade</label>
-            <input type="text" name="cidade" id="cidade" class="form-control" required>
+            <select name="cidade" id="cidade" class="form-select" required>
+                <option value="">Selecione a cidade</option>
+            </select>
         </div>
 
         <div class="mb-3">
@@ -66,4 +70,10 @@
         <a href="{{ route('vereadores.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
+
+@include('partials.scripts-estados-cidades')
+
+@section('scripts')
+    <script src="{{ asset('js/masks.js') }}"></script>
+
 @endsection

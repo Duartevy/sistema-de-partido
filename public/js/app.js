@@ -28048,11 +28048,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener("DOMContentLoaded", function () {
-  inputmask__WEBPACK_IMPORTED_MODULE_1___default()({
-    "mask": "999.999.999-99"
+  inputmask__WEBPACK_IMPORTED_MODULE_1___default()("999.999.999-99", {
+    placeholder: "___.___.___-__",
+    showMaskOnHover: true,
+    showMaskOnFocus: true
   }).mask("#cpf");
-  inputmask__WEBPACK_IMPORTED_MODULE_1___default()({
-    "mask": "(99) 99999-9999"
+  inputmask__WEBPACK_IMPORTED_MODULE_1___default()("(99) 99999-9999", {
+    placeholder: "(__) _____-____",
+    showMaskOnHover: true,
+    showMaskOnFocus: true
   }).mask("#telefone");
 });
 

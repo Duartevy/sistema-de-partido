@@ -64,4 +64,11 @@
         <a href="{{ route('vereadores.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
+
+@include('partials.scripts-estados-cidades')
+
+@section('scripts')
+    <script src="{{ asset('js/masks.js') }}"></script>
+
+
 @endsection
