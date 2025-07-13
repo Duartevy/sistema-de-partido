@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vereador;
+use App\Models\Partido;
 use App\Http\Requests\VereadorRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,7 +11,14 @@ class VereadorController extends Controller
 {
     public function index()
     {
-        return response()->json(Vereador::with('partido')->get());
+        $vereadores = Vereador::with('partido')->get();
+        return view('vereadores.index', compact('vereadores'));
+    }
+
+    public function create()
+    {
+        $partidos = Partido::orderBy('nome')->get();
+        return view('vereadores.create', compact('partidos'));
     }
 
     public function store(VereadorRequest $request)
@@ -21,15 +29,17 @@ class VereadorController extends Controller
             $dados['foto'] = $request->file('foto')->store('vereadores', 'public');
         }
 
-        $vereador = Vereador::create($dados);
+        Vereador::create($dados);
 
-        return response()->json($vereador, 201);
+        return redirect()->route('vereadores.index')->with('success', 'Vereador cadastrado com sucesso!');
     }
 
-    public function show($id)
+    public function edit($id)
     {
-        $vereador = Vereador::with('partido')->findOrFail($id);
-        return response()->json($vereador);
+        $vereador = Vereador::findOrFail($id);
+        $partidos = Partido::orderBy('nome')->get();
+
+        return view('vereadores.edit', compact('vereador', 'partidos'));
     }
 
     public function update(VereadorRequest $request, $id)
@@ -46,6 +56,12 @@ class VereadorController extends Controller
 
         $vereador->update($dados);
 
+        return redirect()->route('vereadores.index')->with('success', 'Vereador atualizado com sucesso!');
+    }
+
+    public function show($id)
+    {
+        $vereador = Vereador::with('partido')->findOrFail($id);
         return response()->json($vereador);
     }
 
@@ -59,6 +75,6 @@ class VereadorController extends Controller
 
         $vereador->delete();
 
-        return response()->json(['mensagem' => 'Vereador removido com sucesso.']);
+        return redirect()->route('vereadores.index')->with('success', 'Vereador removido com sucesso!');
     }
 }

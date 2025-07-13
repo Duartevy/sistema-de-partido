@@ -12,12 +12,17 @@ class PartidoController extends Controller
     {
         $partidos = Partido::all();
 
-        // Adiciona a URL pública da imagem
         foreach ($partidos as $partido) {
             $partido->imagem = $partido->imagem ? asset('storage/' . $partido->imagem) : null;
         }
 
-        return $partidos;
+        // Se a requisição for API (via fetch, axios, etc), retorna JSON
+        if (request()->wantsJson()) {
+            return response()->json($partidos);
+        }
+
+        // Se for via navegador, exibe a view com Blade
+        return view('partidos.index', compact('partidos'));
     }
 
     public function store(PartidoRequest $request)
@@ -30,16 +35,20 @@ class PartidoController extends Controller
 
         $partido = Partido::create($data);
 
-        // Retorna a URL completa da imagem
         $partido->imagem = $partido->imagem ? asset('storage/' . $partido->imagem) : null;
 
+        // Redireciona com sucesso se for formulário Blade
+        if (!request()->wantsJson()) {
+            return redirect()->route('partidos.index')->with('success', 'Partido cadastrado com sucesso!');
+        }
+
+        // Se for API
         return response()->json($partido, 201);
     }
 
     public function show($id)
     {
         $partido = Partido::findOrFail($id);
-
         $partido->imagem = $partido->imagem ? asset('storage/' . $partido->imagem) : null;
 
         return response()->json($partido);
@@ -62,6 +71,11 @@ class PartidoController extends Controller
 
         $partido->imagem = $partido->imagem ? asset('storage/' . $partido->imagem) : null;
 
+        // Redireciona com sucesso se for formulário Blade
+        if (!request()->wantsJson()) {
+            return redirect()->route('partidos.index')->with('success', 'Partido atualizado com sucesso!');
+        }
+
         return response()->json($partido);
     }
 
@@ -75,6 +89,22 @@ class PartidoController extends Controller
 
         $partido->delete();
 
+        // Redireciona se vier do navegador
+        if (!request()->wantsJson()) {
+            return redirect()->route('partidos.index')->with('success', 'Partido excluído com sucesso!');
+        }
+
         return response()->json(['mensagem' => 'Partido deletado com sucesso.']);
+    }
+
+    public function create()
+    {
+        return view('partidos.create');
+    }
+
+    public function edit($id)
+    {
+        $partido = Partido::findOrFail($id);
+        return view('partidos.edit', compact('partido'));
     }
 }

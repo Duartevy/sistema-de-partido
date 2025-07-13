@@ -1,8 +1,12 @@
 <?php
+use App\Http\Controllers\Web\PartidoWebController;
+use App\Http\Controllers\Web\VereadorWebController;
 
-use Illuminate\Support\Facades\Route;
+// Página inicial com lista de partidos
+Route::get('/', [PartidoWebController::class, 'index'])->name('partidos.index');
 
+// Rotas de partidos (formulários e ações visuais)
+Route::resource('partidos', PartidoWebController::class)->except(['index']);
 
-Route::get('/', function () {
-    return 'API do Sistema de Partidos está rodando!';
-});
+// Rotas de vereadores (formulários e ações visuais)
+Route::resource('vereadores', VereadorWebController::class);
