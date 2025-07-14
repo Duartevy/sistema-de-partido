@@ -5,14 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\Vereador;
 use App\Models\Partido;
 use App\Http\Requests\VereadorRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class VereadorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $vereadores = Vereador::with('partido')->get();
-        return view('vereadores.index', compact('vereadores'));
+        $query = Vereador::with('partido');
+
+        // Filtro por partido
+        if ($request->filled('partido')) {
+            $query->where('partido_id', $request->partido);
+        }
+
+        // Filtro por cidade
+        if ($request->filled('cidade')) {
+            $query->where('cidade', 'like', '%' . $request->cidade . '%');
+        }
+
+        // Filtro por nome/email
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nome', 'like', '%' . $request->search . '%')
+                  ->orWhere('email', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $vereadores = $query->get();
+        $partidos = Partido::orderBy('nome')->get(); // necessário pro filtro
+
+        return view('vereadores.index', compact('vereadores', 'partidos'));
     }
 
     public function create()

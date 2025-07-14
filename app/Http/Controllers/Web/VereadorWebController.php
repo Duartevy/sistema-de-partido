@@ -6,13 +6,34 @@ use App\Models\Vereador;
 use App\Models\Partido;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class VereadorWebController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $vereadores = Vereador::with('partido')->get();
-        return view('vereadores.index', compact('vereadores'));
+        $partidos = Partido::orderBy('sigla')->get();
+
+        $query = Vereador::with('partido');
+
+        if ($request->filled('partido')) {
+            $query->where('partido_id', $request->partido);
+        }
+
+        if ($request->filled('cidade')) {
+            $query->where('cidade', 'like', '%' . $request->cidade . '%');
+        }
+
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nome', 'like', '%' . $request->search . '%')
+                  ->orWhere('email', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $vereadores = $query->get();
+
+        return view('vereadores.index', compact('vereadores', 'partidos'));
     }
 
     public function create()
@@ -70,6 +91,10 @@ class VereadorWebController extends Controller
         $vereador = Vereador::findOrFail($id);
 
         if ($request->hasFile('foto')) {
+            if ($vereador->foto && Storage::disk('public')->exists($vereador->foto)) {
+                Storage::disk('public')->delete($vereador->foto);
+            }
+
             $data['foto'] = $request->file('foto')->store('vereadores', 'public');
         }
 
@@ -82,8 +107,8 @@ class VereadorWebController extends Controller
     {
         $vereador = Vereador::findOrFail($id);
 
-        if ($vereador->foto && \Storage::disk('public')->exists($vereador->foto)) {
-            \Storage::disk('public')->delete($vereador->foto);
+        if ($vereador->foto && Storage::disk('public')->exists($vereador->foto)) {
+            Storage::disk('public')->delete($vereador->foto);
         }
 
         $vereador->delete();
