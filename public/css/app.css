@@ -2,3 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Minhas customizações aqui */
+
+/* Navbar azul acinzentado */
+.navbar {
+    background-color: #3b4a5a !important;
+}
+
+/* Botões azul marinho */
+.bg-navy {
+    background-color: #000277 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.bg-navy:hover {
+    background-color: #000155 !important;
+}
+
+.bg-steelblue { 
+    background-color:	#4682B4 !important;
+}
+
+.nowrap-cell {
+    white-space: nowrap;
+    min-width: 130px;
+}
+
+/* Estilo do botão "+ Novo Partido" */
+.novo-partido-btn {
+    background-color: #000277 !important;
+    color: white !important;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+thead th {
+    color: #000277 !important;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+

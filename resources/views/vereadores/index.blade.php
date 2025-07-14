@@ -29,19 +29,21 @@
 
     <div class="table-responsive shadow-sm bg-white rounded">
         <table class="table table-bordered mb-0">
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Nome</th>
-                    <th>Partido</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Estado</th>
-                    <th>Cidade</th>
-                    <th class="text-center">Ações</th>
-                </tr>
-            </thead>
+            
+        <thead>
+            <tr class="text-center text-navy">
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>Partido</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
             <tbody>
                 @foreach($vereadores as $vereador)
                     <tr>
@@ -54,9 +56,9 @@
                         </td>
                         <td>{{ $vereador->nome }}</td>
                         <td>{{ $vereador->partido->sigla ?? '-' }} - {{ $vereador->partido->nome ?? 'Sem partido' }}</td>
-                        <td>{{ $vereador->cpf }}</td>
+                        <td class="nowrap-cell">{{ $vereador->cpf }}</td>
                         <td>{{ $vereador->email }}</td>
-                        <td>{{ $vereador->telefone }}</td>
+                        <td class="nowrap-cell">{{ $vereador->telefone }}</td>
                         <td>{{ $vereador->estado }}</td>
                         <td>{{ $vereador->cidade }}</td>
                         <td class="d-flex gap-2 justify-content-center action-buttons">

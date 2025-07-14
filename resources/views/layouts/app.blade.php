@@ -13,6 +13,9 @@
     <!-- Ícones Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- Seu CSS compilado com Laravel Mix -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <style>
         body {
             background-color: #f2f6fc;
@@ -20,12 +23,7 @@
         }
 
         .navbar {
-            background-color: #1f2e47;
-        }
-
-        .navbar-brand, .nav-link {
-            color: #fff !important;
-            font-weight: 500;
+            background-color: #C0C0C0 !important;
         }
 
         .main-title {
@@ -35,16 +33,7 @@
 
         .main-title h2 {
             font-weight: 600;
-            color: #1f2e47;
-        }
-
-        .btn-primary, .btn-success {
-            font-weight: 500;
-        }
-
-        .table thead {
-            background-color: #284a74;
-            color: #fff;
+            color: #000277;
         }
 
         .btn i {
@@ -66,35 +55,50 @@
         .action-buttons .btn {
             min-width: 90px;
         }
+
+        /* Botões azul marinho */
+        .bg-navy {
+            background-color: #000277 !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        .bg-navy:hover {
+            background-color: #000155 !important;
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg shadow-sm px-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Sistema</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('partidos.index') }}">Partidos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('vereadores.index') }}">Vereadores</a>
-                    </li>
-                </ul>
-                <a href="{{ route('vereadores.create') }}" class="btn btn-success">
-                    <i class="bi bi-plus-lg"></i> Vereadores
-                </a>
-            </div>
+
+<nav class="navbar navbar-expand-lg shadow-sm px-4">
+    <div class="container-fluid">
+
+        {{-- Esquerda: Botões de navegação --}}
+        <div class="d-flex gap-2">
+            <a href="{{ route('partidos.index') }}" class="btn bg-navy text-white fw-semibold px-4 py-2">Partidos</a>
+            <a href="{{ route('vereadores.index') }}" class="btn bg-navy text-white fw-semibold px-4 py-2">Vereadores</a>
         </div>
-    </nav>
 
-    <div class="container">
-        @yield('content')
+        {{-- Direita: Botões de ação --}}
+        <div class="d-flex gap-2 ms-auto">
+            <a href="{{ route('vereadores.create') }}" class="btn bg-navy text-white fw-semibold px-4 py-2">
+                <i class="bi bi-plus-lg"></i> Vereador
+            </a>
+            <a href="{{ route('partidos.create') }}" class="btn bg-navy text-white fw-semibold px-4 py-2">
+                <i class="bi bi-plus-lg"></i> Novo Partido
+            </a>
+        </div>
+
     </div>
+</nav>
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    @yield('scripts')
+<div class="container">
+    @yield('content')
+</div>
 
-    </body>
-    </html>
+<script src="{{ asset('js/app.js') }}"></script>
+@yield('scripts')
+
+</body>
+</html>
