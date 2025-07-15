@@ -15,16 +15,17 @@ return new class extends Migration
     {
         Schema::create('vereadores', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('partido_id')->constrained()->oneDelete('cascade');
+            $table->foreignId('partido_id')->constrained()->onDelete('cascade'); // <- CORRIGIDO onDelete
             $table->string('nome');
             $table->string('cpf')->unique();
             $table->string('email')->unique();
             $table->string('telefone');
-            $table->string('estado');
+            $table->string('estado', 2);
             $table->string('cidade');
-            $table->string('imagem')->nullable();
+            $table->string('foto')->nullable(); // <- ALTERADO de imagem para foto
             $table->timestamps();
         });
+
     }
 
     /**

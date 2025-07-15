@@ -93,6 +93,20 @@
     </div>
 </nav>
 
+
+        <script>
+            // Esconde alertas depois de 5 segundos
+            setTimeout(() => {
+                const alert = document.querySelector('.alert');
+                if (alert) {
+                    alert.style.transition = 'opacity 0.5s ease-out';
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 500); // remove do DOM após o fade
+                }
+            }, 5000); // 5 segundos
+        </script>
+
+
 <div class="container">
     @yield('content')
 </div>

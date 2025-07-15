@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('sigla');
             $table->string('nome');
-            $table->string('imagem')->nullable;
+            $table->string('imagem')->nullable(); // <- CORRIGIDO aqui
             $table->timestamps();
         });
+
     }
 
     /**
