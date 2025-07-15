@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('vereadores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('partido_id')->constrained()->onDelete('cascade'); // <- CORRIGIDO onDelete
+            $table->foreignId('partido_id')->constrained()->onDelete('cascade'); 
             $table->string('nome');
             $table->string('cpf')->unique();
             $table->string('email')->unique();
             $table->string('telefone');
             $table->string('estado', 2);
             $table->string('cidade');
-            $table->string('foto')->nullable(); // <- ALTERADO de imagem para foto
+            $table->string('foto')->nullable(); 
             $table->timestamps();
         });
 
