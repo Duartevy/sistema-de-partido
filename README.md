@@ -87,6 +87,7 @@ cp .env.example .env
 
 Edite o .env e configure o banco de dados:
 
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
