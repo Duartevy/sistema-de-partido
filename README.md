@@ -41,14 +41,14 @@ Abaixo algumas capturas de tela do sistema em funcionamento:
 ### Página Inicial
 ![Tela Inicial](public/images/captura_tela_inicial.png)
 
+### Vereadores Cadastrados
+![Lista de Vereadores](public/images/captura_vereadores_cadastrados.png)
+
 ### Cadastro de Novo Partido
 ![Cadastro de Partido](public/images/captura_cadastro-novo-partido.png)
 
 ### Cadastro de Novo Vereador
 ![Cadastro de Vereador](public/images/captura_cadastro-novo-vereador.png)
-
-### Vereadores Cadastrados
-![Lista de Vereadores](public/images/captura_vereadores_cadastrados.png)
 
 ### Editando Vereador
 ![Editando Vereador](public/images/captura_editando-vereador.png)
