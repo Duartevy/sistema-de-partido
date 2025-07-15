@@ -47,7 +47,7 @@ class VereadorRequest extends FormRequest
     }
 }
 
-// ✅ Função auxiliar para validar CPF matematicamente
+// ✅ Função auxiliar para validar CPF 
 if (!function_exists('isValidCpf')) {
     function isValidCpf($cpf)
     {

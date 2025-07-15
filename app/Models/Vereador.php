@@ -9,10 +9,8 @@ class Vereador extends Model
 {
     use HasFactory;
 
-    // Corrige o nome da tabela usada pelo Eloquent
     protected $table = 'vereadores';
 
-    // Campos que podem ser preenchidos em massa
     protected $fillable = [
         'nome',
         'cpf',
