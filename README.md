@@ -74,6 +74,7 @@ Navegador moderno
 📥📦 Instalação e configuração
 
 # 1. Clone o projeto
+```bash
 git clone https://github.com/Duartevy/sistema-de-partido.git
 cd sistema-de-partido
 
@@ -85,7 +86,7 @@ cp .env.example .env
 
 ---
 
-Edite o .env e configure o banco de dados:
+Abra o arquivo .env e configure os dados do seu banco de dados:
 
 ```env
 DB_CONNECTION=mysql
@@ -103,21 +104,24 @@ DB_PASSWORD=sua_senha
 # 4. Gere a chave da aplicação
 php artisan key:generate
 
-# 5. Execute as migrations e seeders
+# 5. Crie o link simbólico para as imagens
+php artisan storage:link
+✔️ Isso garante que as imagens dos partidos e vereadores apareçam corretamente.
+
+# 6. Execute as migrations e seeders
 php artisan migrate --seed
 ✔️ Isso criará todas as tabelas e adicionará automaticamente os 15 partidos e 8 vereadores com imagens.
 
-# 6. Inicie o servidor
+# 7. Inicie o servidor
 php artisan serve
-
----
-
 📥 Acesse o sistema em: http://127.0.0.1:8000
+
 
 ---
 
 🗂️ Estrutura das Tabelas
-*Partidos*
+
+**Partidos**
 
 id
 
@@ -130,7 +134,7 @@ imagem
 timestamps
 
 
-*Vereadores*
+**Vereadores**
 
 id
 
@@ -156,22 +160,17 @@ timestamps
 
 📦 Seeders
 Os seeders inserem 15 partidos e 8 vereadores com dados reais e fotos (já armazenadas no projeto).
-São executados automaticamente no comando *php artisan migrate --seed*
+São executados automaticamente no comando:
+**php artisan migrate --seed**
 
 ---
 
-📝 Observações
-
-O projeto utiliza storage:link automaticamente. Caso precise criar manualmente, use:
-*php artisan storage:link*
-
----
 
 As imagens dos partidos e vereadores ficam em:
 
-storage/app/public/partidos
+storage\app\public\partidos
 
-storage/app/public/vereadores
+storage\app\public\vereadores
 
 ---
 
@@ -185,7 +184,7 @@ Para listar Cidades: https://servicodados.ibge.gov.br/api/v1/localidades/estados
 
 🧪 Dicas para Testes
 
-Após php artisan migrate --seed:
+Após rodar php artisan migrate --seed:
 
 Crie, edite e exclua Partidos e Vereadores
 
@@ -200,8 +199,7 @@ Visualize miniaturas de imagens após o upload
 
 👨‍💻 Autor
 Desenvolvido por Milene Duarte
-📧 Email: [milenegba@gmail.com]
-🔗 LinkedIn/Portfólio: [(https://www.linkedin.com/in/duartevy/)]
+🔗 [LinkedIn](https://www.linkedin.com/in/duartevy/)
 
 
 📄 Licença
