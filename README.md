@@ -1,8 +1,4 @@
-from pathlib import Path
-
-# Conteúdo do README.md com base na versão melhorada
-readme_content = """
-# 🗳️ Sistema de Partidos e Vereadores – Laravel
+# 🗳️ Sistema de Partidos e Vereadores (CRUD)
 
 Sistema web desenvolvido com **Laravel 10+** para gerenciamento completo de **Partidos** e **Vereadores**.
 
