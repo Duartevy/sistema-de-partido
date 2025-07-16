@@ -77,6 +77,7 @@ Navegador moderno
 ```bash
 git clone https://github.com/Duartevy/sistema-de-partido.git
 cd sistema-de-partido
+```
 
 # 2. Instale as dependências PHP com o Composer
 composer install
@@ -88,16 +89,16 @@ cp .env.example .env
 
 Abra o arquivo .env e configure os dados do seu banco de dados:
 
-```
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=sistema_partido
 DB_USERNAME=seu_usuario
 DB_PASSWORD=sua_senha
+```
 
 ⚠️ Certifique-se de já ter criado o banco de dados com o nome sistema_partido no seu MySQL.
-
 
 ---
 
