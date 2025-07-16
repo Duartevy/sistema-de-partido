@@ -4,8 +4,8 @@ use App\Http\Controllers\Web\PartidoWebController;
 use App\Http\Controllers\Web\VereadorWebController;
 
 // Página inicial com lista de partidos
-Route::get('/', [PartidoWebController::class, 'index'])->name('home'); // <- nomeando como 'home'
-Route::get('/partidos', [PartidoWebController::class, 'index'])->name('partidos.index');
+Route::get('/', [VereadorWebController::class, 'index'])->name('home'); // 
+Route::get('/vereadores', [VereadorWebController::class, 'index'])->name('vereador.index');
 
 // Rotas de partidos (formulários e ações visuais)
 Route::resource('partidos', PartidoWebController::class)->except(['index']);
