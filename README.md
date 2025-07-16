@@ -122,7 +122,7 @@ php artisan serve
 
 🗂️ Estrutura das Tabelas
 
-**Partidos**
+## Partidos
 
 id
 
@@ -134,8 +134,7 @@ imagem
 
 timestamps
 
-
-**Vereadores**
+## Vereadores
 
 id
 
