@@ -106,10 +106,12 @@ DB_PASSWORD=sua_senha
 php artisan key:generate
 
 # 5. Crie o link simbólico para as imagens
+
 php artisan storage:link
 ✔️ Isso garante que as imagens dos partidos e vereadores apareçam corretamente.
 
 # 6. Execute as migrations e seeders
+
 php artisan migrate --seed
 ✔️ Isso criará todas as tabelas e adicionará automaticamente os 15 partidos e 8 vereadores com imagens.
 
@@ -159,6 +161,7 @@ timestamps
 ---
 
 📦 Seeders
+
 Os seeders inserem 15 partidos e 8 vereadores com dados reais e fotos (já armazenadas no projeto).
 São executados automaticamente no comando:
 **php artisan migrate --seed**
