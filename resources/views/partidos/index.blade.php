@@ -26,11 +26,14 @@
             @foreach($partidos as $partido)
                 <div class="col">
                     <div class="card h-100 shadow-sm">
-                        @if($partido->imagem)
+                        
+                    @if($partido->imagem)
                             <img src="{{ asset('storage/' . $partido->imagem) }}" class="card-img-top" alt="Imagem do partido" style="object-fit: contain; height: 150px;">
-                        @else
-                            <img src="https://via.placeholder.com/300x150?text=Sem+Imagem" class="card-img-top" alt="Sem imagem">
-                        @endif
+                    @else
+                            <div class="d-flex align-items-center justify-content-center" style="height: 150px; background-color: #f8f9fa;">
+                            <span class="text-muted">Sem foto</span>
+                        </div>
+                    @endif
 
                         <div class="card-body text-center">
                             <h5 class="card-title">{{ $partido->nome }}</h5>
